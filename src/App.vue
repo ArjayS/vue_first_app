@@ -6,7 +6,7 @@ import { ref, onMounted, computed, watch } from 'vue'
 // computed used to make things in-order and create an array
 // watch, it will watch our references and update our local storage
 
-// references @5:00
+// constant references @5:00
 const todos = ref([])
 const name = ref('')
 
@@ -18,6 +18,8 @@ const todos_asc = computed(() =>
     return a.createdAt - b.createdAt
   })
 )
+
+const addTodo = () => {}
 
 watch(name, (newVal) => {
   localStorage.setItem('name', newVal)
@@ -33,5 +35,14 @@ onMounted(() => {
     <section class="greeting">
       <h2 class="title">What's up, <input type="text" placeholder="Name here" v-model="name" /></h2>
     </section>
+
+    <sectio class="create-todo">
+      <h3>CRETE A TODO</h3>
+      <form @submit.prevent="addTodo">
+        <h4>What's on your todo list?</h4>
+        <input type="text" placeholder="e.g. make a video" v-model="input_content" />
+        <h4>Pick a category</h4>
+      </form>
+    </sectio>
   </main>
 </template>
