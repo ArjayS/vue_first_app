@@ -6,12 +6,18 @@ import { ref, onMounted, computed, watch } from 'vue'
 // computed used to make things in-order and create an array
 // watch, it will watch our references and update our local storage
 
-// references
+// references @5:00
 const todos = ref([])
 const name = ref('')
 
 const input_content = ref('')
 const input_category = ref(null)
+
+const todos_asc = computed(() =>
+  todos.value.sort((a, b) => {
+    return a.createdAt - b.createdAt
+  })
+)
 </script>
 
 <template>
