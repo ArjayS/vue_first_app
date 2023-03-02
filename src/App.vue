@@ -18,10 +18,20 @@ const todos_asc = computed(() =>
     return a.createdAt - b.createdAt
   })
 )
+
+watch(name, (newVal) => {
+  localStorage.setItem('name', newVal)
+})
+
+onMounted(() => {
+  name.value = localStorage.getItem('name') || ''
+})
 </script>
 
 <template>
-  <div>
-    <h1>Hello World!</h1>
-  </div>
+  <main class="app">
+    <section class="greeting">
+      <h2 class="title">What's up, <input type="text" placeholder="Name here" v-model="name" /></h2>
+    </section>
+  </main>
 </template>
